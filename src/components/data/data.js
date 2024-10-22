@@ -1,17 +1,17 @@
 const data = [
   {
     id: 1,
-    title: "To-Do",
+    category: "To-Do",
     projects: [
       {
         id: crypto.randomUUID(),
-        title: "Content Writer",
+        taskName: "Content Writer",
         description: "Prepare proctor for client meeting",
         date: "February 20, 2024",
       },
       {
         id: crypto.randomUUID(),
-        title: "Content Writer",
+        taskName: "Content Writer",
         description: "Make Promotional Ads for Instagram fasto's",
         date: "March 02, 2024",
       },
@@ -20,11 +20,11 @@ const data = [
   },
   {
     id: 2,
-    title: "On Progress",
+    category: "On Progress",
     projects: [
       {
         id: crypto.randomUUID(),
-        title: "Content Writer",
+        taskName: "Content Writer",
         description: "Prepare proctor for client meeting",
         date: "May 12, 2024",
       },
@@ -33,11 +33,11 @@ const data = [
   },
   {
     id: 3,
-    title: "Done",
+    category: "Done",
     projects: [
       {
         id: crypto.randomUUID(),
-        title: "Content Writer",
+        taskName: "Content Writer",
         description: "Make Promotional Ads for Instagram fasto's",
         date: "Septempber 03, 2024",
       },
@@ -46,11 +46,11 @@ const data = [
   },
   {
     id: 4,
-    title: "Revise",
+    category: "Revise",
     projects: [
       {
         id: crypto.randomUUID(),
-        title: "Content Writer",
+        taskName: "Content Writer",
         description: "Make Promotional Ads for Instagram fasto's",
         date: "October 29, 2024",
       },

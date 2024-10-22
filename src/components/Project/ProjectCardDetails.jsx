@@ -1,6 +1,6 @@
 import { DeleteSVG, EditSVG } from "../SVG/IconSVG";
 
-const ProjectCardDetails = ({ color, title, description, date }) => {
+const ProjectCardDetails = ({ color, taskName, description, date }) => {
   // Formatting date with a comma
   const parts = new Date(date)
     .toLocaleDateString("en-GB", {
@@ -15,7 +15,9 @@ const ProjectCardDetails = ({ color, title, description, date }) => {
     <>
       <div className="mb-4 rounded-lg bg-gray-800 p-4">
         <div className="flex justify-between">
-          <h4 className={`mb-2 flex-1 font-semibold text-${color}`}>{title}</h4>
+          <h4 className={`mb-2 flex-1 font-semibold text-${color}`}>
+            {taskName}
+          </h4>
 
           <div className="flex gap-2">
             <EditSVG />
