@@ -11,11 +11,19 @@ const ProjectCardDetails = ({ color, taskName, description, date }) => {
     .split(" ");
   const formattedDate = `${parts[0]} ${parts[1]}, ${parts[2]}`;
 
+  // Color variants for dynamic class
+  const colorVariants = {
+    "indigo-600": "text-indigo-600",
+    "yellow-500": "text-yellow-500",
+    "teal-500": "text-teal-500",
+    "rose-500": "text-rose-500",
+  };
+
   return (
     <>
       <div className="mb-4 rounded-lg bg-gray-800 p-4">
         <div className="flex justify-between">
-          <h4 className={`mb-2 flex-1 font-semibold text-${color}`}>
+          <h4 className={`mb-2 flex-1 font-semibold ${colorVariants[color]}`}>
             {taskName}
           </h4>
 
