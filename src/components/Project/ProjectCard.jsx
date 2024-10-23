@@ -1,14 +1,16 @@
 import { SortSVG } from "../SVG/IconSVG";
 import ProjectCardDetails from "./ProjectCardDetails";
+import TaskListEmpty from "./TaskListEmpty";
 
 const ProjectCard = ({ category, projects, color }) => {
   // Color variants for dynamic class
   const colorVariants = {
-    "indigo-600": "bg-indigo-600",
-    "yellow-500": "bg-yellow-500",
-    "teal-500": "bg-teal-500",
-    "rose-500": "bg-rose-500",
+    indigo: "bg-indigo-600",
+    yellow: "bg-yellow-500",
+    teal: "bg-teal-500",
+    rose: "bg-rose-500",
   };
+
   return (
     <>
       <div className="mb-4 w-full px-2 sm:w-1/2 md:w-1/4">
@@ -20,6 +22,7 @@ const ProjectCard = ({ category, projects, color }) => {
             <SortSVG />
           </div>
           <div>
+            {projects.length === 0 && <TaskListEmpty />}
             {projects.map((project) => (
               <ProjectCardDetails key={project.id} {...project} color={color} />
             ))}

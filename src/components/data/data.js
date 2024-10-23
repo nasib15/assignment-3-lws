@@ -16,7 +16,7 @@ const data = [
         date: "March 02, 2024",
       },
     ],
-    color: "indigo-600",
+    color: "indigo",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const data = [
         date: "May 12, 2024",
       },
     ],
-    color: "yellow-500",
+    color: "yellow",
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const data = [
         date: "Septempber 03, 2024",
       },
     ],
-    color: "teal-500",
+    color: "teal",
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ const data = [
         date: "October 29, 2024",
       },
     ],
-    color: "rose-500",
+    color: "rose",
   },
 ];
 

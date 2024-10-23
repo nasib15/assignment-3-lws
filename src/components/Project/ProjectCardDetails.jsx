@@ -13,10 +13,10 @@ const ProjectCardDetails = ({ color, taskName, description, date }) => {
 
   // Color variants for dynamic class
   const colorVariants = {
-    "indigo-600": "text-indigo-600",
-    "yellow-500": "text-yellow-500",
-    "teal-500": "text-teal-500",
-    "rose-500": "text-rose-500",
+    indigo: "text-indigo-600",
+    yellow: "text-yellow-500",
+    teal: "text-teal-500",
+    rose: "text-rose-500",
   };
 
   return (
