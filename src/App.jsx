@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
 import ProjectBoard from "./components/Project/ProjectBoard";
 import Sidebar from "./components/Sidebar";
@@ -10,6 +12,7 @@ function App() {
   return (
     <ProjectContext.Provider value={{ state, dispatch }}>
       <div className="bg-gray-900 text-white flex h-screen">
+        <ToastContainer />
         <Sidebar />
         <main className="flex-1 overflow-y-auto overflow-x-hidden">
           <Navbar />

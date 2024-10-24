@@ -1,6 +1,9 @@
 import { DeleteSVG, EditSVG } from "../SVG/IconSVG";
 
-const ProjectCardDetails = ({ color, taskName, description, date }) => {
+const ProjectCardDetails = ({ task, color, onEdit }) => {
+  // Destructuring task object
+  const { taskName, description, date } = task;
+
   // Formatting date with a comma
   const parts = new Date(date)
     .toLocaleDateString("en-GB", {
@@ -28,8 +31,12 @@ const ProjectCardDetails = ({ color, taskName, description, date }) => {
           </h4>
 
           <div className="flex gap-2">
-            <EditSVG />
-            <DeleteSVG />
+            <span>
+              <DeleteSVG />
+            </span>
+            <span onClick={() => onEdit(task)}>
+              <EditSVG />
+            </span>
           </div>
         </div>
         <p className="mb-2 text-sm text-zinc-200">{description}</p>

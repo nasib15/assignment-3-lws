@@ -2,7 +2,7 @@ import { SortSVG } from "../SVG/IconSVG";
 import ProjectCardDetails from "./ProjectCardDetails";
 import TaskListEmpty from "./TaskListEmpty";
 
-const ProjectCard = ({ category, projects, color }) => {
+const ProjectCard = ({ category, tasks, color, onEdit }) => {
   // Color variants for dynamic class
   const colorVariants = {
     indigo: "bg-indigo-600",
@@ -17,14 +17,19 @@ const ProjectCard = ({ category, projects, color }) => {
         <div className={`rounded-lg ${colorVariants[color]} p-4`}>
           <div className="mb-2 flex items-center justify-between">
             <h3 className="text-lg font-semibold">
-              {category} ({projects.length})
+              {category} ({tasks.length})
             </h3>
             <SortSVG />
           </div>
           <div>
-            {projects.length === 0 && <TaskListEmpty />}
-            {projects.map((project) => (
-              <ProjectCardDetails key={project.id} {...project} color={color} />
+            {tasks.length === 0 && <TaskListEmpty />}
+            {tasks.map((task) => (
+              <ProjectCardDetails
+                key={task.id}
+                task={task}
+                color={color}
+                onEdit={onEdit}
+              />
             ))}
           </div>
         </div>

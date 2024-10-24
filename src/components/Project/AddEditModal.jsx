@@ -1,33 +1,34 @@
-import useProjectContext from "../hooks/useProjectContext";
+import { useState } from "react";
 
-const AddEditModal = ({ onClose }) => {
-  const { dispatch } = useProjectContext();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const taskName = e.target.taskName.value;
-    const description = e.target.description.value;
-    const date = e.target.date.value;
-    const category = e.target.category.value;
-    const task = {
+const AddEditModal = ({ onClose, onSubmit, taskToUpdate }) => {
+  const [task, setTask] = useState(
+    taskToUpdate || {
       id: crypto.randomUUID(),
-      taskName,
-      description,
-      date,
-      category,
-    };
-    console.log(task);
-    dispatch({ type: "ADD_PROJECT", task });
-    onClose();
+      taskName: "",
+      description: "",
+      date: "",
+      category: "",
+    }
+  );
+
+  const [isAdd, setIsAdd] = useState(Object.is(taskToUpdate, null));
+
+  const handleChange = (e) => {
+    setTask({
+      ...task,
+      [e.target.name]: e.target.value,
+    });
   };
+
   return (
     <main className="fixed top-0 left-0 w-screen h-screen z-50 backdrop-blur-sm">
       <div className="flex min-h-screen items-center justify-center  p-4 text-white">
         <div className="w-full max-w-md rounded-lg bg-gray-800 shadow-xl">
           <div className="p-6">
             <h2 className="mb-6 text-2xl font-bold text-green-400">
-              Create Task
+              {isAdd ? "Add" : "Edit"} Task
             </h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => onSubmit(e, task, isAdd)}>
               <div className="mb-4">
                 <label
                   htmlFor="taskName"
@@ -39,8 +40,9 @@ const AddEditModal = ({ onClose }) => {
                   type="text"
                   id="taskName"
                   name="taskName"
-                  required
                   className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  onChange={handleChange}
+                  value={task.taskName}
                 />
               </div>
               <div className="mb-4">
@@ -55,6 +57,8 @@ const AddEditModal = ({ onClose }) => {
                   name="description"
                   rows="3"
                   className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white placeholder-gray-400 shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  onChange={handleChange}
+                  value={task.description}
                 ></textarea>
               </div>
               <div className="mb-4">
@@ -69,6 +73,8 @@ const AddEditModal = ({ onClose }) => {
                   id="dueDate"
                   name="date"
                   className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  onChange={handleChange}
+                  value={task.date}
                 />
               </div>
 
@@ -83,11 +89,14 @@ const AddEditModal = ({ onClose }) => {
                   id="category"
                   name="category"
                   className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white shadow-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  onChange={handleChange}
+                  value={task.category}
                 >
-                  <option value="to-do">To-Do</option>
-                  <option value="on progress">On Progress</option>
-                  <option value="done">Done</option>
-                  <option value="revise">Revise</option>
+                  <option value="">Select Category</option>
+                  <option value="To-Do">To-Do</option>
+                  <option value="On Progress">On Progress</option>
+                  <option value="Done">Done</option>
+                  <option value="Revise">Revise</option>
                 </select>
               </div>
 
@@ -103,7 +112,7 @@ const AddEditModal = ({ onClose }) => {
                   type="submit"
                   className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
-                  Create Task
+                  {isAdd ? "Add" : "Update"}
                 </button>
               </div>
             </form>
