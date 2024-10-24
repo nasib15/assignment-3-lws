@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { getAllProjects } from "../data/data";
+import useProjectContext from "../hooks/useProjectContext";
 import { AddSVG } from "../SVG/IconSVG";
 import AddEditModal from "./AddEditModal";
 import ProjectCard from "./ProjectCard";
 
 const ProjectBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const projectData = getAllProjects();
+  const { state } = useProjectContext();
 
   const handleModal = () => {
     setIsModalOpen(true);
@@ -34,7 +34,7 @@ const ProjectBoard = () => {
         </div>
 
         <div className="-mx-2 mb-6 flex flex-wrap">
-          {projectData.map((project) => (
+          {state.projectsData.map((project) => (
             <ProjectCard key={project.id} {...project} />
           ))}
         </div>
