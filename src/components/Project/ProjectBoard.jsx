@@ -36,7 +36,12 @@ const ProjectBoard = () => {
     }
 
     if (!isAdd) {
-      dispatch({ type: "EDIT_PROJECT", task });
+      console.log(task);
+      const category = state.projectsData.map(
+        (project) => project.category === task.category
+      );
+
+      dispatch({ type: "EDIT_PROJECT", task, category });
     }
 
     setIsModalOpen(false);
@@ -45,6 +50,16 @@ const ProjectBoard = () => {
   const handleEditTask = (task) => {
     setTaskToUpdate(task);
     setIsModalOpen(true);
+  };
+
+  const handleDeleteTask = (task) => {
+    dispatch({ type: "DELETE_PROJECT", task });
+    window.confirm("Are you sure you want to delete this task?");
+    if (window.confirm) {
+      toast.error("Task deleted successfully", {
+        position: "top-center",
+      });
+    }
   };
 
   return (
@@ -76,6 +91,7 @@ const ProjectBoard = () => {
               key={project.id}
               {...project}
               onEdit={handleEditTask}
+              onDelete={handleDeleteTask}
             />
           ))}
         </div>

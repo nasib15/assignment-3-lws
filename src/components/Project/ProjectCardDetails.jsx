@@ -1,8 +1,8 @@
 import { DeleteSVG, EditSVG } from "../SVG/IconSVG";
 
-const ProjectCardDetails = ({ task, color, onEdit }) => {
+const ProjectCardDetails = ({ task, color, onEdit, onDelete }) => {
   // Destructuring task object
-  const { taskName, description, date } = task;
+  const { id, taskName, description, date } = task;
 
   // Formatting date with a comma
   const parts = new Date(date)
@@ -31,7 +31,7 @@ const ProjectCardDetails = ({ task, color, onEdit }) => {
           </h4>
 
           <div className="flex gap-2">
-            <span>
+            <span onClick={() => onDelete(task)}>
               <DeleteSVG />
             </span>
             <span onClick={() => onEdit(task)}>

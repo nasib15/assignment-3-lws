@@ -12,7 +12,7 @@ function App() {
   return (
     <ProjectContext.Provider value={{ state, dispatch }}>
       <div className="bg-gray-900 text-white flex h-screen">
-        <ToastContainer />
+        <ToastContainer pauseOnFocusLoss={false} limit={3} />
         <Sidebar />
         <main className="flex-1 overflow-y-auto overflow-x-hidden">
           <Navbar />

@@ -2,7 +2,7 @@ import { SortSVG } from "../SVG/IconSVG";
 import ProjectCardDetails from "./ProjectCardDetails";
 import TaskListEmpty from "./TaskListEmpty";
 
-const ProjectCard = ({ category, tasks, color, onEdit }) => {
+const ProjectCard = ({ category, tasks, color, onEdit, onDelete }) => {
   // Color variants for dynamic class
   const colorVariants = {
     indigo: "bg-indigo-600",
@@ -29,6 +29,7 @@ const ProjectCard = ({ category, tasks, color, onEdit }) => {
                 task={task}
                 color={color}
                 onEdit={onEdit}
+                onDelete={onDelete}
               />
             ))}
           </div>

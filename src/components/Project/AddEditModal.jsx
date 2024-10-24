@@ -11,7 +11,10 @@ const AddEditModal = ({ onClose, onSubmit, taskToUpdate }) => {
     }
   );
 
+  console.log(task);
+
   const [isAdd, setIsAdd] = useState(Object.is(taskToUpdate, null));
+  console.log(isAdd);
 
   const handleChange = (e) => {
     setTask({
