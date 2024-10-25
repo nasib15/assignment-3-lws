@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { getAllProjects } from "../data/data";
 import useProjectContext from "../hooks/useProjectContext";
 import { AddSVG } from "../SVG/IconSVG";
 import AddEditModal from "./AddEditModal";
@@ -9,7 +10,9 @@ const ProjectBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToUpdate, setTaskToUpdate] = useState(null);
 
-  const { state, dispatch } = useProjectContext();
+  const { dispatch } = useProjectContext();
+
+  const projectsData = getAllProjects();
 
   const handleModal = () => {
     setIsModalOpen(true);
@@ -36,22 +39,19 @@ const ProjectBoard = () => {
     }
 
     if (!isAdd) {
-      console.log(task);
-      const category = state.projectsData.map(
-        (project) => project.category === task.category
-      );
-
-      dispatch({ type: "EDIT_PROJECT", task, category });
+      dispatch({ type: "EDIT_PROJECT", task });
     }
 
     setIsModalOpen(false);
   };
 
+  // Edit task function
   const handleEditTask = (task) => {
     setTaskToUpdate(task);
     setIsModalOpen(true);
   };
 
+  // Delete task function
   const handleDeleteTask = (task) => {
     dispatch({ type: "DELETE_PROJECT", task });
     window.confirm("Are you sure you want to delete this task?");
@@ -86,7 +86,7 @@ const ProjectBoard = () => {
         </div>
 
         <div className="-mx-2 mb-6 flex flex-wrap">
-          {state.projectsData.map((project) => (
+          {projectsData.map((project) => (
             <ProjectCard
               key={project.id}
               {...project}

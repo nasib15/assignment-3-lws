@@ -9,6 +9,7 @@ import { initialState, projectReducer } from "./reducers/ProjectReducer";
 
 function App() {
   const [state, dispatch] = useReducer(projectReducer, initialState);
+
   return (
     <ProjectContext.Provider value={{ state, dispatch }}>
       <div className="bg-gray-900 text-white flex h-screen">

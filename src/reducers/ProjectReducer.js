@@ -1,51 +1,31 @@
-import { data } from "../components/data/data";
+import { getAllTasks } from "../components/data/data";
+
+const tasksList = getAllTasks();
 
 const initialState = {
-  projectsData: [...data],
+  tasksList: [...tasksList],
 };
 
 const projectReducer = (state, action) => {
-  console.log(state);
   switch (action.type) {
     case "ADD_PROJECT":
       return {
         ...state,
-        projectsData: state.projectsData.map((project) =>
-          project.category.toLowerCase() === action.task.category.toLowerCase()
-            ? { ...project, tasks: [...project.tasks, action.task] }
-            : project
-        ),
+        tasksList: [...state.tasksList, action.task],
       };
 
     case "EDIT_PROJECT":
-      console.log(state, action.task);
       return {
         ...state,
-        projectsData: state.projectsData.map((project) =>
-          project.category.toLowerCase() === action.task.category.toLowerCase()
-            ? {
-                ...project,
-                tasks: project.tasks.map((task) =>
-                  task.id === action.task.id ? action.task : task
-                ),
-              }
-            : project
+        tasksList: state.tasksList.map((task) =>
+          task.id === action.task.id ? action.task : task
         ),
       };
 
     case "DELETE_PROJECT":
       return {
         ...state,
-        projectsData: state.projectsData.map((project) =>
-          project.category.toLowerCase() === action.task.category.toLowerCase()
-            ? {
-                ...project,
-                tasks: project.tasks.filter(
-                  (task) => task.id !== action.task.id
-                ),
-              }
-            : project
-        ),
+        tasksList: state.tasksList.filter((task) => task.id !== action.task.id),
       };
 
     default:

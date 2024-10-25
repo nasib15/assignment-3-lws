@@ -1,8 +1,12 @@
+import useProjectContext from "../hooks/useProjectContext";
 import { SortSVG } from "../SVG/IconSVG";
 import ProjectCardDetails from "./ProjectCardDetails";
 import TaskListEmpty from "./TaskListEmpty";
 
-const ProjectCard = ({ category, tasks, color, onEdit, onDelete }) => {
+const ProjectCard = ({ category, color, onEdit, onDelete }) => {
+  const { state } = useProjectContext();
+  const tasks = state.tasksList.filter((task) => task.category === category);
+
   // Color variants for dynamic class
   const colorVariants = {
     indigo: "bg-indigo-600",
