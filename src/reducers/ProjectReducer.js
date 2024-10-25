@@ -25,7 +25,7 @@ const projectReducer = (state, action) => {
     case "DELETE_PROJECT":
       return {
         ...state,
-        tasksList: state.tasksList.filter((task) => task.id !== action.task.id),
+        tasksList: state.tasksList.filter((task) => task.id !== action.id),
       };
 
     default:

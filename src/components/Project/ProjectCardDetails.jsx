@@ -31,7 +31,7 @@ const ProjectCardDetails = ({ task, color, onEdit, onDelete }) => {
           </h4>
 
           <div className="flex gap-2">
-            <span onClick={() => onDelete(task)}>
+            <span onClick={() => onDelete(id)}>
               <DeleteSVG />
             </span>
             <span onClick={() => onEdit(task)}>

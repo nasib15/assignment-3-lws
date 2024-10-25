@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useProjectContext from "../hooks/useProjectContext";
 import { SortSVG } from "../SVG/IconSVG";
 import ProjectCardDetails from "./ProjectCardDetails";
@@ -5,7 +6,20 @@ import TaskListEmpty from "./TaskListEmpty";
 
 const ProjectCard = ({ category, color, onEdit, onDelete }) => {
   const { state } = useProjectContext();
-  const tasks = state.tasksList.filter((task) => task.category === category);
+  const [sortOrder, setSortOrder] = useState("desc");
+
+  const tasks = state.tasksList
+    .filter((task) => task.category === category)
+    .sort((a, b) => {
+      const order = sortOrder === "desc" ? -1 : 1;
+
+      // Multiplying bcz for final sort order
+      return order * (new Date(a.date) - new Date(b.date));
+    });
+
+  const toggleSort = () => {
+    setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"));
+  };
 
   // Color variants for dynamic class
   const colorVariants = {
@@ -23,7 +37,9 @@ const ProjectCard = ({ category, color, onEdit, onDelete }) => {
             <h3 className="text-lg font-semibold">
               {category} ({tasks.length})
             </h3>
-            <SortSVG />
+            <span onClick={toggleSort}>
+              <SortSVG />
+            </span>
           </div>
           <div>
             {tasks.length === 0 && <TaskListEmpty />}

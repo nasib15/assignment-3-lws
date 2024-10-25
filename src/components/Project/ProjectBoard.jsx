@@ -34,10 +34,12 @@ const ProjectBoard = () => {
       });
     }
 
+    // Adding task to the state
     if (isAdd) {
       dispatch({ type: "ADD_PROJECT", task });
     }
 
+    // Editing task in the state
     if (!isAdd) {
       dispatch({ type: "EDIT_PROJECT", task });
     }
@@ -52,8 +54,8 @@ const ProjectBoard = () => {
   };
 
   // Delete task function
-  const handleDeleteTask = (task) => {
-    dispatch({ type: "DELETE_PROJECT", task });
+  const handleDeleteTask = (id) => {
+    dispatch({ type: "DELETE_PROJECT", id });
     window.confirm("Are you sure you want to delete this task?");
     if (window.confirm) {
       toast.error("Task deleted successfully", {
