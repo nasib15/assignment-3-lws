@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { getAllProjects } from "../data/data";
-import useProjectContext from "../hooks/useProjectContext";
+import { getAllProjects } from "../../data/data";
+import useProjectContext from "../../hooks/useProjectContext";
 import { AddSVG } from "../SVG/IconSVG";
 import AddEditModal from "./AddEditModal";
 import ProjectCard from "./ProjectCard";

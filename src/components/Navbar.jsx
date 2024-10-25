@@ -1,13 +1,14 @@
-import useProjectContext from "./hooks/useProjectContext";
+import { useContext } from "react";
+import { SearchContext } from "../contexts";
 import { MailSVG, MenuSVG, NotificationSVG } from "./SVG/IconSVG";
 
 const Navbar = () => {
-  const { state, dispatch } = useProjectContext();
+  const { setSearchValue } = useContext(SearchContext);
   // Search functionality
 
   const handleSearch = (e) => {
     const searchValue = e.target.value;
-    dispatch({ type: "SEARCH_PROJECT", searchValue });
+    setSearchValue(searchValue);
   };
 
   return (

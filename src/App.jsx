@@ -1,25 +1,20 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "./components/Navbar";
-import ProjectBoard from "./components/Project/ProjectBoard";
-import Sidebar from "./components/Sidebar";
-import { ProjectContext } from "./contexts";
+import { ProjectContext, SearchContext } from "./contexts";
+import Page from "./Page";
 import { initialState, projectReducer } from "./reducers/ProjectReducer";
 
 function App() {
   const [state, dispatch] = useReducer(projectReducer, initialState);
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <ProjectContext.Provider value={{ state, dispatch }}>
-      <div className="bg-gray-900 text-white flex h-screen">
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <ToastContainer pauseOnFocusLoss={false} limit={3} />
-        <Sidebar />
-        <main className="flex-1 overflow-y-auto overflow-x-hidden">
-          <Navbar />
-          <ProjectBoard />
-        </main>
-      </div>
+        <Page />
+      </SearchContext.Provider>
     </ProjectContext.Provider>
   );
 }

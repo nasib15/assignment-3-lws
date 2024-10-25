@@ -1,4 +1,4 @@
-import { getAllTasks } from "../components/data/data";
+import { getAllTasks } from "../data/data";
 
 const tasksList = getAllTasks();
 

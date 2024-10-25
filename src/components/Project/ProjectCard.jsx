@@ -1,15 +1,21 @@
-import { useState } from "react";
-import useProjectContext from "../hooks/useProjectContext";
+import { useContext, useState } from "react";
+import { SearchContext } from "../../contexts";
+import useProjectContext from "../../hooks/useProjectContext";
 import { SortSVG } from "../SVG/IconSVG";
 import ProjectCardDetails from "./ProjectCardDetails";
 import TaskListEmpty from "./TaskListEmpty";
 
 const ProjectCard = ({ category, color, onEdit, onDelete }) => {
-  const { state } = useProjectContext();
   const [sortOrder, setSortOrder] = useState("desc");
+  const { searchValue } = useContext(SearchContext);
+  const { state } = useProjectContext();
 
   const tasks = state.tasksList
-    .filter((task) => task.category === category)
+    .filter(
+      (task) =>
+        task.category === category &&
+        task.taskName.toLowerCase().includes(searchValue.toLowerCase())
+    )
     .sort((a, b) => {
       const order = sortOrder === "desc" ? -1 : 1;
 
