@@ -14,10 +14,12 @@ const ProjectBoard = () => {
 
   const projectsData = getAllProjects();
 
+  // Open modal function
   const handleModal = () => {
     setIsModalOpen(true);
   };
 
+  // Close modal function and resetting the updated task
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setTaskToUpdate(null);

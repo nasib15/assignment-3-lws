@@ -4,8 +4,8 @@ import { MailSVG, MenuSVG, NotificationSVG } from "./SVG/IconSVG";
 
 const Navbar = () => {
   const { setSearchValue } = useContext(SearchContext);
-  // Search functionality
 
+  // Search functionality
   const handleSearch = (e) => {
     const searchValue = e.target.value;
     setSearchValue(searchValue);

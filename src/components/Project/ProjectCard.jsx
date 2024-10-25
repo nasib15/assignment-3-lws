@@ -10,6 +10,7 @@ const ProjectCard = ({ category, color, onEdit, onDelete }) => {
   const { searchValue } = useContext(SearchContext);
   const { state } = useProjectContext();
 
+  // Filtering tasks based on category and search value
   const tasks = state.tasksList
     .filter(
       (task) =>
@@ -23,6 +24,7 @@ const ProjectCard = ({ category, color, onEdit, onDelete }) => {
       return order * (new Date(a.date) - new Date(b.date));
     });
 
+  // Toggle sort order
   const toggleSort = () => {
     setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"));
   };
