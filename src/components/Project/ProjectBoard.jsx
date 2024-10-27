@@ -39,13 +39,20 @@ const ProjectBoard = () => {
     // Adding task to the state
     if (isAdd) {
       dispatch({ type: "ADD_PROJECT", task });
+      toast.success("Task added successfully", {
+        position: "top-center",
+      });
     }
 
     // Editing task in the state
     if (!isAdd) {
       dispatch({ type: "EDIT_PROJECT", task });
+      toast.success("Task updated successfully", {
+        position: "top-center",
+      });
     }
 
+    setTaskToUpdate(null);
     setIsModalOpen(false);
   };
 
