@@ -31,7 +31,7 @@
 1. **Clone the repository:**
 
    ```
-   git clone https://github.com/nasib15/assignment-3-lws
+   git clone https://github.com/nasib15/assignment-3-lws.git
    cd assignment-3-lws
    ```
 
